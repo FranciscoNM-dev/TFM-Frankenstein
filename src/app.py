@@ -9,11 +9,11 @@ import dash
 from dash import dcc, html, dash_table
 from dash.dependencies import Input, Output, State, MATCH, ALL
 import pandas as pd
-from funcionesaux import funcion_prueba_percentiles, funcion_prueba_similitud_coseno, value_transform
+from src.utils import funcion_prueba_percentiles, funcion_prueba_similitud_coseno, value_transform
 
 # Mis datos
-df = pd.read_csv("pruebaDefinitivo.csv")
-df90 = pd.read_csv("pruebaDefinitivo90.csv")
+df = pd.read_csv("data/processed/pruebaDefinitivo.csv")
+df90 = pd.read_csv("data/processed/pruebaDefinitivo90.csv")
 columnas=list(df.columns)
 columnasTablaValues=columnas[9:160]+[columnas[-1]]
 
