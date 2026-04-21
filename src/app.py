@@ -9,7 +9,7 @@ import dash
 from dash import dcc, html, dash_table
 from dash.dependencies import Input, Output, State, MATCH, ALL
 import pandas as pd
-from src.utils import funcion_prueba_percentiles, funcion_prueba_similitud_coseno, value_transform
+from utils import funcion_prueba_percentiles, funcion_prueba_similitud_coseno, value_transform
 
 # Mis datos
 df = pd.read_csv("data/processed/pruebaDefinitivo.csv")
@@ -369,4 +369,4 @@ def update_text2(column, jugador, importancia, tabla):
 
 # Ejecución de la aplicación
 if __name__ == '__main__':
-    app.run_server(debug=False,port='2024')
+    app.run(debug=False,port='2024')
