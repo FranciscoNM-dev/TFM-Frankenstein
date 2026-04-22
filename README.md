@@ -1,33 +1,52 @@
-Frankenstein: Similarity-Based Football Scouting Engine
-This project implements a scouting tool designed to identify statistical matches ("twins") for professional football players. It uses a data-driven approach to compare performance metrics across multiple leagues, providing objective recruitment insights based on vector proximity.
+# Frankenstein — Football Player Similarity Engine
 
-Project Overview
-The engine addresses the problem of finding replacements or similar profiles for specific players by analyzing performance data. It allows for multi-player profile synthesis (creating a "Frankenstein" target) and ranks potential candidates based on their statistical proximity to that target.
+A scouting tool that identifies statistically similar football players across multiple leagues. Built as Master's Thesis for the MSc in Big Data for Football Analytics and Scouting at the Real Madrid Graduate School.
 
-Technical Implementation
-Mathematical Framework
-Feature Scaling: Implementation of normalization techniques to ensure fair comparisons across different leagues and positions, neutralizing the bias of raw volume and different metric scales.
+## What it does
 
-Distance Metrics: Use of Euclidean Distance and Cosine Similarity to calculate the proximity between players in a multi-dimensional feature space.
+Frankenstein lets you build a target player profile by combining stats from multiple real players with custom weights, then ranks candidates by statistical proximity to that profile. Supports both Euclidean distance and Cosine similarity as comparison methods.
 
-Feature Engineering: Transformation of performance metrics into "Per 90 Minutes" statistics to ensure time-independent analysis.
+## Tech stack
 
-Methodology
-Data Acquisition: Processing and cleaning of large-scale football datasets from fbref and Transfermarkt.
+- **Python** — core logic
+- **Pandas / NumPy / SciPy** — data processing and distance metrics
+- **Dash (Plotly)** — interactive web interface
+- **Docker** — containerization (coming soon)
 
-Scoring Logic: User-defined weighting system for different performance metrics, allowing for customized scouting priorities (e.g., weighing passing accuracy over defensive actions).
+## How to run
 
-Visualization: Interactive dashboard built to visualize the statistical comparison between the target profile and the top candidates.
+```bash
+git clone https://github.com/FranciscoNM-dev/TFM-Frankenstein.git
+cd TFM-Frankenstein
+python -m venv .venv
+source .venv/Scripts/activate  # Windows
+pip install -r requirements.txt
+python -m src.app
+```
 
-Tech Stack
-Language: Python
+Open `http://localhost:2024` in your browser.
 
-Libraries: Pandas, NumPy, Scikit-learn
+## Project structure
+```
+TFM-Frankenstein/
+├── src/
+│   ├── app.py        # Dash application and callbacks
+│   └── utils.py      # Similarity functions (Euclidean, Cosine)
+├── data/
+│   ├── raw/          # Source data from fbref and Transfermarkt
+│   └── processed/    # Cleaned datasets ready for the app
+├── scripts/          # Data acquisition and processing scripts
+├── assets/           # CSS styles
+└── requirements.txt
+```
 
-Interface: Dash (Plotly), HTML, CSS
+## Known limitations
 
-Academic Background
-This software was developed as a Master's Thesis for the MSc in Big Data for Football Analytics and Scouting at the Real Madrid Graduate School.
+- The fbref scraper (`scripts/actualizarFbref.py`) is currently broken due to fbref updating their anti-scraping measures. The processed datasets included in the repo reflect data from the 2023/24 season.
+- UI styling partially broken after upgrading to Dash 4.x.
 
-Author
-Francisco Alfonso Navarro Martinelli
+## Next steps
+
+- Fix Dash 4.x styling issues
+- Replace fbref scraper with a working alternative
+- Add Docker support for easier deployment
