@@ -369,4 +369,4 @@ def update_text2(column, jugador, importancia, tabla):
 
 # Ejecución de la aplicación
 if __name__ == '__main__':
-    app.run(debug=False,port='2024')
+    app.run(debug=False,port='2024', host='0.0.0.0')
